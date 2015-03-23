@@ -25,5 +25,10 @@ func main() {
 		fmt.Println("GOT:", in)
 	} else {
 		fmt.Println("GOT A PIPE")
+		pw, err := terminal.ReadPassword(0)
+		if err != nil {
+			panic(err)
+		}
+		fmt.Println("GOT:", pw)
 	}
 }
