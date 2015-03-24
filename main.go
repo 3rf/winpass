@@ -10,9 +10,9 @@ func main() {
 		fmt.Printf("Password: ")
 		pass := gopass.GetPasswd()
 		fmt.Println("GOT:", string(pass))
-	if !terminal.IsTerminal(syscall.Stdin) {
+	if !terminal.IsTerminal(0) {
 		fmt.Println("GOT A PIPE")
-		in, _, err := bufio.NewReader(0).ReadLine()
+		in, _, err := bufio.NewReader(os.Stdin).ReadLine()
 		if err != nil {
 			panic(err)
 		}
