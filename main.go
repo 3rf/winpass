@@ -9,7 +9,7 @@ import "syscall"
 import "unsafe"
 
 func main() {
-	if !terminal.IsTerminal(int(uintptr(unsafe.Pointer(syscall.Stdin)))) {
+	if !terminal.IsTerminal(int(syscall.Stdin)) {
 		fmt.Println("GOT A PIPE")
 		in, _, err := bufio.NewReader(os.Stdin).ReadLine()
 		if err != nil {
