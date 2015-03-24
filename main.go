@@ -7,30 +7,20 @@ import "golang.org/x/crypto/ssh/terminal"
 import "os"
 
 func main() {
-	if terminal.IsTerminal(0) {
-		fmt.Println("GOT A TERM")
-		bup, err := terminal.MakeRaw(0)
-		if err != nil {
-			panic(err)
-		}
-
+	if !terminal.IsTerminal(0) {
+		fmt.Println("GOT A PIPE")
 		in, _, err := bufio.NewReader(os.Stdin).ReadLine()
 		if err != nil {
 			panic(err)
 		}
-
-		err = terminal.Restore(0, bup)
-		if err != nil {
-			panic(err)
-		}
 		fmt.Println()
-		fmt.Println("GOT:", in)
+		fmt.Println("GOT:", string(in))
 	} else {
-		fmt.Println("GOT A PIPE")
-		pw, err := terminal.ReadPassword(0)
+		fmt.Printf("Password: ")
+		pass := gopass.GetPasswd()
 		if err != nil {
 			panic(err)
 		}
-		fmt.Println("GOT:", pw)
+		fmt.Println("GOT:", string(pass))
 	}
 }
