@@ -5,9 +5,10 @@ import "fmt"
 import "github.com/howeyc/gopass"
 import "golang.org/x/crypto/ssh/terminal"
 import "os"
+import "syscall"
 
 func main() {
-	if !terminal.IsTerminal(0) {
+	if !terminal.IsTerminal(syscall.Stdin) {
 		fmt.Println("GOT A PIPE")
 		in, _, err := bufio.NewReader(os.Stdin).ReadLine()
 		if err != nil {
