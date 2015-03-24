@@ -6,7 +6,6 @@ import "github.com/howeyc/gopass"
 import "golang.org/x/crypto/ssh/terminal"
 import "os"
 import "syscall"
-import "unsafe"
 
 func main() {
 	if !terminal.IsTerminal(int(syscall.Stdin)) {
