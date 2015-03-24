@@ -2,10 +2,16 @@ package main
 
 import "bufio"
 import "fmt"
+import "github.com/howeyc/gopass"
 import "golang.org/x/crypto/ssh/terminal"
 import "os"
 
 func main() {
+	fmt.Printf("Password: ")
+    pass := gopass.GetPasswd()
+	fmt.Println("GOT", pass)
+	os.Exit(0)
+
 	if terminal.IsTerminal(0) {
 		bup, err := terminal.MakeRaw(0)
 		if err != nil {
