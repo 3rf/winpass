@@ -18,9 +18,6 @@ func main() {
 	} else {
 		fmt.Printf("Password: ")
 		pass := gopass.GetPasswd()
-		if err != nil {
-			panic(err)
-		}
 		fmt.Println("GOT:", string(pass))
 	}
 }
